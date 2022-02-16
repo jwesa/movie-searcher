@@ -11,36 +11,40 @@ import {
 
 import "./App.css";
 
-
 function App() {
+    const [loading, setLoading] = useState(false);
     const [movies, setMovies] = useState([]);
     const [search, setSearch] = useState("");
 
     const fetchMovies = (API) => {
+        setLoading(true);
         fetch(API)
-            .then((res) => res.json())
+            .then((res) => {
+                return res.json();
+            })
             .then((data) => {
                 console.log(data);
                 setMovies(data.results);
+                setLoading(false);
             });
-    };
-
-    useEffect(() => {
-        fetchMovies(POPULAR_API);
-    }, []);
-
-    const handleOnSubmit = (e) => {
-        e.preventDefault();
-
-        if (search) {
-            fetchMovies(SEARCH_API+search);
-            setSearch("");
-        }
     };
 
     const handleOnChange = (e) => {
         setSearch(e.target.value);
     };
+
+    const handleOnSubmit = (e) => {
+        e.preventDefault();
+
+        if (search) {
+            fetchMovies(SEARCH_API + search);
+            setSearch("");
+        }
+    };
+
+    useEffect(() => {
+        fetchMovies(POPULAR_API);
+    }, []);
 
     return (
         <div>
@@ -53,15 +57,21 @@ function App() {
                         onChange={handleOnChange}
                     />
                     <SearchButton onSubmit={handleOnSubmit}>
-                        <i class="fa fa-search"></i>
+                        <i className="fa fa-search"></i>
                     </SearchButton>
                 </SearchForm>
             </SearchHeader>
             <MovieContainer>
-                {movies.map((movie) => (
-                    <Movie key={movie.id} {...movie} />
-                    // spread чтобы не передавать каждый проп отдельно: poster = { movie.poster_path } title = { movie.title } и так далее
-                ))}
+                {loading === true ? (
+                    <div className="loading">Loading...</div>
+                ) : movies.length === 0 ? (
+                    <div className="no-movie">Movie not found</div>
+                ) : (
+                    movies.map((movie) => (
+                        <Movie key={movie.id} {...movie} />
+                        // spread чтобы не передавать каждый проп отдельно: poster = { movie.poster_path } title = { movie.title } и так далее
+                    ))
+                )}
             </MovieContainer>
         </div>
     );
