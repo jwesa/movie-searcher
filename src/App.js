@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Movie from "./components/Movie";
 import { API_KEY } from "./api/config";
-import { MovieContainer, SearchHeader, SearchInput } from "./styles/stylesApp";
+import {
+    MovieContainer,
+    SearchHeader,
+    SearchInput,
+    SearchButton,
+    SearchForm,
+} from "./styles/stylesApp";
 
 import "./App.css";
 
@@ -10,43 +16,48 @@ const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}
 
 function App() {
     const [movies, setMovies] = useState([]);
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState("");
 
-    useEffect(() => {
-        fetch(POPULAR_API)
+    const fetchMovies = (API) => {
+        fetch(API)
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
                 setMovies(data.results);
             });
+    };
+
+    useEffect(() => {
+        fetchMovies(POPULAR_API);
     }, []);
 
     const handleOnSubmit = (e) => {
-		e.preventDefault();
-		
-		fetch(SEARCH_API+search)
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                setMovies(data.results);
-            });
-	};
-	
-	const handleOnChange = (e) => {
-		setSearch(e.target.value);
-	}
+        e.preventDefault();
+
+        if (search) {
+            fetchMovies(SEARCH_API+search);
+            setSearch("");
+        }
+    };
+
+    const handleOnChange = (e) => {
+        setSearch(e.target.value);
+    };
 
     return (
         <div>
             <SearchHeader>
-                <form onSubmit={handleOnSubmit}>
+                <SearchForm onSubmit={handleOnSubmit}>
                     <SearchInput
                         type="search"
                         placeholder="Search..."
-						value={search}
-						onChange={handleOnChange}
+                        value={search}
+                        onChange={handleOnChange}
                     />
-                </form>
+                    <SearchButton onSubmit={handleOnSubmit}>
+                        <i class="fa fa-search"></i>
+                    </SearchButton>
+                </SearchForm>
             </SearchHeader>
             <MovieContainer>
                 {movies.map((movie) => (

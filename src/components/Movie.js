@@ -1,5 +1,12 @@
 import React from "react";
-import { MovieCard, MovieImage, MovieInfo, MovieTitle, AvgVote, Overview } from "../styles/stylesMovie";
+import {
+    MovieCard,
+    MovieImage,
+    MovieInfo,
+    MovieTitle,
+    AvgVote,
+    Overview,
+} from "../styles/stylesMovie";
 
 const IMG_API = "https://image.tmdb.org/t/p/w500";
 
@@ -10,14 +17,26 @@ const Movie = ({
     overview,
     poster_path,
 }) => {
+    const setAvgVoteClass = (vote) => {
+        if (vote >= 7.5) {
+            return "green";
+        } else if (vote >= 6) {
+            return "yellow";
+        } else {
+            return "red";
+        }
+    };
+
     return (
         <MovieCard>
             <MovieImage src={IMG_API + poster_path} alt={title} />
             <MovieInfo>
-				<MovieTitle>
-					{/* {release_date.slice(0,4)} */}
-					{title}</MovieTitle>
-				<AvgVote>
+                <MovieTitle>
+                    <span className="year">{release_date.slice(0, 4)}</span>
+                    <br />
+                    {title}
+                </MovieTitle>
+                <AvgVote className={setAvgVoteClass(vote_average)}>
                     {String(vote_average).length === 3
                         ? vote_average
                         : vote_average + ".0"}
