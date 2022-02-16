@@ -14,8 +14,10 @@ const Movie = ({
         <MovieCard>
             <MovieImage src={IMG_API + poster_path} alt={title} />
             <MovieInfo>
-                <MovieTitle>{title}</MovieTitle>
-                <AvgVote>
+				<MovieTitle>
+					{/* {release_date.slice(0,4)} */}
+					{title}</MovieTitle>
+				<AvgVote>
                     {String(vote_average).length === 3
                         ? vote_average
                         : vote_average + ".0"}

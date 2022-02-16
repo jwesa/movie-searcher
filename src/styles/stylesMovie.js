@@ -32,7 +32,7 @@ export const MovieTitle = styled.h3`
 export const AvgVote = styled.span`
     position: absolute;
     top: -1px;
-    right: -1px;
+    right:-1px;
     padding: 4px;
     background-color: #080a3f;
     border-bottom-left-radius: 15px;
