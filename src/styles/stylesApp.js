@@ -11,7 +11,8 @@ export const SearchHeader = styled.header`
     justify-content: end;
     background-color: #0e384b;
     padding: 1rem;
-	margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0px 6px 9px 2px rgba(0, 0, 0, 0.25);
 `;
 
 export const SearchForm = styled.form`
