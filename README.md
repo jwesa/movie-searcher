@@ -1,1 +1,1 @@
-Movie Searcher App
+Movie Searcher App using React and Styled Components
