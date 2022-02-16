@@ -32,7 +32,7 @@ export const MovieImage = styled.img`
 export const MovieInfo = styled.div`
     display: flex;
     justify-content: start;
-    padding: 0.3rem 0.5rem 0.3rem 1rem;
+    padding: 0.3rem 0.5rem 0.5rem 1rem;
 `;
 
 export const MovieTitle = styled.h3`

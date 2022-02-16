@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Movie from "./components/Movie";
-import { API_KEY } from "./api/config";
+import { POPULAR_API, SEARCH_API } from "./api/config";
 import {
     MovieContainer,
     SearchHeader,
@@ -11,8 +11,6 @@ import {
 
 import "./App.css";
 
-const POPULAR_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&page=1`;
-const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`;
 
 function App() {
     const [movies, setMovies] = useState([]);

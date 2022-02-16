@@ -8,7 +8,7 @@ import {
     Overview,
 } from "../styles/stylesMovie";
 
-const IMG_API = "https://image.tmdb.org/t/p/w500";
+import { IMG_API } from "../api/config";
 
 const Movie = ({
     release_date,
@@ -29,7 +29,14 @@ const Movie = ({
 
     return (
         <MovieCard>
-            <MovieImage src={IMG_API + poster_path} alt={title} />
+            <MovieImage
+                src={
+                    poster_path
+                        ? IMG_API + poster_path
+                        : "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/660px-No-Image-Placeholder.svg.png?20200912122019"
+                }
+                alt={title}
+            />
             <MovieInfo>
                 <MovieTitle>
                     <span className="year">{release_date.slice(0, 4)}</span>
