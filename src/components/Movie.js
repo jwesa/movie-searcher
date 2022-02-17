@@ -27,6 +27,13 @@ const Movie = ({
         }
     };
 
+    const voteFormatted =
+        vote_average === 0
+            ? "N/A"
+            : null || String(vote_average).length === 3
+            ? vote_average
+            : vote_average + ".0";
+
     return (
         <MovieCard>
             <MovieImage
@@ -39,14 +46,14 @@ const Movie = ({
             />
             <MovieInfo>
                 <MovieTitle>
-                    <span className="year">{release_date.slice(0, 4)}</span>
+                    <span className="year">
+                        {release_date ? release_date.slice(0, 4) : "N/A"}
+                    </span>
                     <br />
                     {title}
                 </MovieTitle>
                 <AvgVote className={setAvgVoteClass(vote_average)}>
-                    {String(vote_average).length === 3
-                        ? vote_average
-                        : vote_average + ".0"}
+                    {voteFormatted}
                 </AvgVote>
             </MovieInfo>
             <Overview className="over">

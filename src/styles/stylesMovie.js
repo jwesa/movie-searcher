@@ -25,6 +25,7 @@ export const MovieCard = styled.div`
 `;
 
 export const MovieImage = styled.img`
+	border-radius: 3px;
 	height: 375px;
     width: 100%;
 `;
