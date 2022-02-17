@@ -68,8 +68,14 @@ function App() {
                     <div className="no-movie">Movie not found</div>
                 ) : (
                     movies.map((movie) => (
-                        <Movie key={movie.id} {...movie} />
-                        // spread чтобы не передавать каждый проп отдельно: poster = { movie.poster_path } title = { movie.title } и так далее
+                        <Movie
+                            key={movie.id}
+                            release_date={movie.release_date}
+                            title={movie.title}
+                            poster_path={movie.poster_path}
+                            vote_average={movie.vote_average}
+                            overview={movie.overview}
+                        />
                     ))
                 )}
             </MovieContainer>
