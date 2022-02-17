@@ -56,7 +56,7 @@ function App() {
                         value={search}
                         onChange={handleOnChange}
                     />
-                    <SearchButton onSubmit={handleOnSubmit}>
+                    <SearchButton>
                         <i className="fa fa-search"></i>
                     </SearchButton>
                 </SearchForm>
