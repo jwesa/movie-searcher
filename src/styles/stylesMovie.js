@@ -25,8 +25,8 @@ export const MovieCard = styled.div`
 `;
 
 export const MovieImage = styled.img`
-	border-radius: 3px;
-	height: 375px;
+    border-radius: 3px;
+    height: 375px;
     width: 100%;
 `;
 
@@ -40,16 +40,18 @@ export const MovieTitle = styled.h3`
     font-weight: 500;
     margin: 0;
 
-	.year {
-		font-weight: bold;
-	}
+    .year {
+        font-weight: bold;
+    }
 `;
 
 export const AvgVote = styled.span`
     position: absolute;
     top: -1px;
     right: -1px;
+    min-width: 2rem;
     padding: 4px;
+    text-align: center;
     font-weight: 500;
     background-color: #080a3f;
     border-bottom-left-radius: 15px;

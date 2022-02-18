@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { POPULAR_API, SEARCH_API } from "./api/config";
+import { TRENDING_API, SEARCH_API } from "./api/config";
 import Movie from "./components/Movie";
 import {
     MovieContainer,
@@ -18,12 +18,16 @@ function App() {
     const [movies, setMovies] = useState<[]>([]);
     const [search, setSearch] = useState<string>("");
 
-    const fetchMovies = (API: string) => {
+    const fetchMovies = (API: string): void => {
         setLoading(true);
         fetch(API)
             .then((res) => {
                 return res.json();
-            })
+			})
+			.catch(e => {
+				setLoading(false);
+				console.error('Error occured:', e);
+			})
             .then((data) => {
                 console.log(data);
                 setMovies(data.results);
@@ -45,7 +49,7 @@ function App() {
     };
 
     useEffect(() => {
-        fetchMovies(POPULAR_API);
+        fetchMovies(TRENDING_API);
     }, []);
 
     return (

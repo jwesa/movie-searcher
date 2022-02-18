@@ -1,4 +1,3 @@
-import React from "react";
 import {
     MovieCard,
     MovieImage,
@@ -11,7 +10,6 @@ import {
 import { IMG_API } from "../api/config";
 
 import { MovieProps } from "../interfaces/interfaces";
-
 
 const Movie = ({
     release_date,
