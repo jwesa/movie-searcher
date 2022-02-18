@@ -10,14 +10,17 @@ import {
 
 import { IMG_API } from "../api/config";
 
+import { MovieProps } from "../interfaces/interfaces";
+
+
 const Movie = ({
     release_date,
     title,
     vote_average,
     overview,
     poster_path,
-}) => {
-    const setAvgVoteClass = (vote) => {
+}: MovieProps) => {
+    const setAvgVoteClass = (vote: number): string => {
         if (vote >= 7.5) {
             return "green";
         } else if (vote >= 6) {

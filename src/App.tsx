@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import Movie from "./components/Movie";
+
 import { POPULAR_API, SEARCH_API } from "./api/config";
+import Movie from "./components/Movie";
 import {
     MovieContainer,
     SearchHeader,
@@ -8,15 +9,16 @@ import {
     SearchButton,
     SearchForm,
 } from "./styles/stylesApp";
-
 import "./App.css";
 
-function App() {
-    const [loading, setLoading] = useState(false);
-    const [movies, setMovies] = useState([]);
-    const [search, setSearch] = useState("");
+import { MovieRenderProps } from "./interfaces/interfaces";
 
-    const fetchMovies = (API) => {
+function App() {
+    const [loading, setLoading] = useState<boolean>(false);
+    const [movies, setMovies] = useState<[]>([]);
+    const [search, setSearch] = useState<string>("");
+
+    const fetchMovies = (API: string) => {
         setLoading(true);
         fetch(API)
             .then((res) => {
@@ -29,11 +31,11 @@ function App() {
             });
     };
 
-    const handleOnChange = (e) => {
+    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearch(e.target.value);
     };
 
-    const handleOnSubmit = (e) => {
+    const handleOnSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
         if (search) {
@@ -67,7 +69,7 @@ function App() {
                 ) : movies.length === 0 ? (
                     <div className="no-movie">Movie not found</div>
                 ) : (
-                    movies.map((movie) => (
+                    movies.map((movie: MovieRenderProps) => (
                         <Movie
                             key={movie.id}
                             release_date={movie.release_date}
