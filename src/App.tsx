@@ -23,11 +23,11 @@ function App() {
         fetch(API)
             .then((res) => {
                 return res.json();
-			})
-			.catch(e => {
-				setLoading(false);
-				console.error('Error occured:', e);
-			})
+            })
+            .catch((e) => {
+                setLoading(false);
+                console.error("Error occured:", e);
+            })
             .then((data) => {
                 console.log(data);
                 setMovies(data.results);
