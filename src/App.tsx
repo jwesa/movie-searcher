@@ -15,17 +15,17 @@ import "./App.css";
 import { MovieRenderProps } from "./interfaces/interfaces";
 import { searchMovie } from "./redux/actions/actions";
 
-
 function App() {
     const [loading, setLoading] = useState<boolean>(false);
     const [movies, setMovies] = useState<[]>([]);
 
-	const movieInput = useSelector((store: any) => {
-		const { inputReducer } = store;
-		return inputReducer.text;
+    const movieInput = useSelector((store: any) => {
+        //! Need to change ANY type later
+        const { inputReducer } = store;
+        return inputReducer.text;
     });
     const dispatch = useDispatch();
-	
+
     const fetchMovies = (API: string): void => {
         setLoading(true);
         fetch(API)
@@ -44,7 +44,7 @@ function App() {
     };
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		dispatch(searchMovie(e.target.value));
+        dispatch(searchMovie(e.target.value));
     };
 
     const handleOnSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -52,7 +52,7 @@ function App() {
 
         if (movieInput) {
             fetchMovies(SEARCH_API + movieInput);
-			dispatch(searchMovie(''));
+            dispatch(searchMovie(""));
         }
     };
 
