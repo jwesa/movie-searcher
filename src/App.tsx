@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { TRENDING_API, SEARCH_API } from "./api/config";
 import Movie from "./components/Movie";
@@ -12,12 +13,19 @@ import {
 import "./App.css";
 
 import { MovieRenderProps } from "./interfaces/interfaces";
+import { searchMovie } from "./redux/actions/actions";
+
 
 function App() {
     const [loading, setLoading] = useState<boolean>(false);
     const [movies, setMovies] = useState<[]>([]);
-    const [search, setSearch] = useState<string>("");
 
+	const movieInput = useSelector((store: any) => {
+		const { inputReducer } = store;
+		return inputReducer.text;
+    });
+    const dispatch = useDispatch();
+	
     const fetchMovies = (API: string): void => {
         setLoading(true);
         fetch(API)
@@ -36,15 +44,15 @@ function App() {
     };
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearch(e.target.value);
+		dispatch(searchMovie(e.target.value));
     };
 
     const handleOnSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        if (search) {
-            fetchMovies(SEARCH_API + search);
-            setSearch("");
+        if (movieInput) {
+            fetchMovies(SEARCH_API + movieInput);
+			dispatch(searchMovie(''));
         }
     };
 
@@ -59,7 +67,7 @@ function App() {
                     <SearchInput
                         type="search"
                         placeholder="Search..."
-                        value={search}
+                        value={movieInput}
                         onChange={handleOnChange}
                     />
                     <SearchButton>
