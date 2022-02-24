@@ -18,6 +18,7 @@ const Movie = ({
     overview,
     poster_path,
 }: MovieProps) => {
+	
     const setAvgVoteClass = (vote: number): string => {
         if (vote >= 7.5) {
             return "green";
