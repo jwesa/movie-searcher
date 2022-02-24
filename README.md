@@ -1,1 +1,1 @@
-Movie Searcher App using React TypeScript and Styled Components.
+Movie Searcher App using React TypeScript, Redux state management and Styled Components.
