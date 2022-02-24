@@ -1,15 +1,16 @@
 import { MovieWrapper } from "../styles/stylesMovieContainer";
 
 import { useSelector } from "react-redux";
-import { MovieRenderProps } from "../interfaces/interfaces";
+import { MovieRenderProps } from "../interfaces/propsInterfaces";
 import Movie from "./Movie";
 
 const MovieContainer = () => {
+	//!
     const movies = useSelector((store: any) => {
         const { fetchMoviesReducer } = store;
         return fetchMoviesReducer.movies;
     });
-
+	//!
     const loading = useSelector((store: any) => {
         const { loadingReducer } = store;
         return loadingReducer.loading;

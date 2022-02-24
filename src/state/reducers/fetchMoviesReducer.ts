@@ -1,13 +1,27 @@
 import { FETCH_MOVIES } from "../types/types";
+import { fetchActionInterface } from './../../interfaces/actionInterfaces';
+import { fetchStateInterface } from "./../../interfaces/stateInterfaces";
 
-const initialState = {
+interface movieInterface {
+    id: number;
+    release_date: string;
+    title: string;
+    vote_average: number;
+    overview: string;
+    poster_path: string;
+}
+
+const initialState: fetchStateInterface = {
     movies: [],
 };
 
-export const fetchMoviesReducer = (state = initialState, action) => {
+export const fetchMoviesReducer = (
+    state = initialState,
+    action: fetchActionInterface
+) => {
     switch (action.type) {
         case FETCH_MOVIES:
-            const movies = action.data.map((movie) => {
+            const movies = action.data.map((movie: movieInterface) => {
                 return {
                     id: movie.id,
                     vote_average: movie.vote_average,

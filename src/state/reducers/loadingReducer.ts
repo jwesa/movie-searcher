@@ -1,11 +1,13 @@
 import { SET_LOADING_OFF, SET_LOADING_ON } from "../types/types";
+import { loadingStateInterface } from './../../interfaces/stateInterfaces';
+import { loadingActionInterface } from './../../interfaces/actionInterfaces';
 
-const initialState = {
+const initialState: loadingStateInterface = {
     loading: true,
 };
 
-export const loadingReducer = (state = initialState, action) => {
-	switch (action.type) {
+export const loadingReducer = (state = initialState, action: loadingActionInterface) => {
+    switch (action.type) {
         case SET_LOADING_ON:
             return {
                 ...state,

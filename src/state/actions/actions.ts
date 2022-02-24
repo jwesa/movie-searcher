@@ -1,12 +1,14 @@
 import {
-    FETCH_MOVIES,
-    SEARCH_MOVIE,
+	FETCH_MOVIES,
+	SEARCH_MOVIE,
     SET_LOADING_ON,
     SET_LOADING_OFF,
 } from "../types/types";
 
-export function fetchMovies(API) {
-    return async (dispatch) => {
+export function fetchMovies(API: string) {
+
+	//! any type needs change
+    return async (dispatch: any) => {
         try {
             dispatch(setLoadingOn());
             const response = await fetch(API);
@@ -23,7 +25,7 @@ export function fetchMovies(API) {
     };
 }
 
-export function searchMovie(text) {
+export function searchMovie(text: string) {
     return {
         type: SEARCH_MOVIE,
         text,
