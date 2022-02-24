@@ -5,24 +5,25 @@ import {
     SearchButton,
 } from "../styles/stylesSearchBar";
 
+import { SEARCH_API } from "../api/config";
+
 import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies, searchMovie } from "../state/actions/actions";
-
-import { SEARCH_API } from "../api/config";
+import { State } from "../state/reducers/rootReducer";
 
 const SearchBar = () => {
     const dispatch = useDispatch();
-	//!!!! NEED CHANGE
-    const movieInput = useSelector((store: any) => {
-        const { inputReducer } = store;
+
+    const movieInput = useSelector((state: State) => {
+        const { inputReducer } = state;
         return inputReducer.text;
     });
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(searchMovie(e.target.value));
     };
-	//!!!! NEED CHANGE
-    const handleOnSubmit = (e: React.MouseEvent<HTMLButtonElement> | any) => {
+
+    const handleOnSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
         if (movieInput) {
@@ -33,7 +34,7 @@ const SearchBar = () => {
 
     return (
         <SearchHeader>
-            <SearchForm onSubmit={handleOnSubmit}>
+            <SearchForm onSubmit={() => handleOnSubmit}>
                 <SearchInput
                     type="search"
                     placeholder="Search..."

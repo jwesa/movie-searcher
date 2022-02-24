@@ -8,3 +8,5 @@ export const rootReducer = combineReducers({
     loadingReducer,
     fetchMoviesReducer,
 });
+
+export type State = ReturnType<typeof rootReducer>;

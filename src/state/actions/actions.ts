@@ -4,11 +4,11 @@ import {
     SET_LOADING_ON,
     SET_LOADING_OFF,
 } from "../types/types";
+import { Dispatch } from "redux";
 
 export function fetchMovies(API: string) {
 
-	//! any type needs change
-    return async (dispatch: any) => {
+    return async (dispatch: Dispatch) => {
         try {
             dispatch(setLoadingOn());
             const response = await fetch(API);
