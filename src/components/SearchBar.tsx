@@ -23,7 +23,7 @@ const SearchBar = () => {
         dispatch(searchMovie(e.target.value));
     };
 
-    const handleOnSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleOnSubmit = (e: React.MouseEvent<HTMLButtonElement> | React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (movieInput) {
@@ -34,7 +34,7 @@ const SearchBar = () => {
 
     return (
         <SearchHeader>
-            <SearchForm onSubmit={() => handleOnSubmit}>
+            <SearchForm onSubmit={handleOnSubmit}>
                 <SearchInput
                     type="search"
                     placeholder="Search..."
