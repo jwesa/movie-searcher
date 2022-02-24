@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { TRENDING_API, SEARCH_API } from "./api/config";
@@ -13,35 +13,28 @@ import {
 import "./App.css";
 
 import { MovieRenderProps } from "./interfaces/interfaces";
-import { searchMovie } from "./redux/actions/actions";
+import { fetchMovies, searchMovie } from "./redux/actions/actions";
 
 function App() {
-    const [loading, setLoading] = useState<boolean>(false);
-    const [movies, setMovies] = useState<[]>([]);
+
+    //! Need to change ANY type later
+
+    const dispatch = useDispatch();
+
+    const movies = useSelector((store: any) => {
+        const { fetchMoviesReducer } = store;
+        return fetchMoviesReducer.movies;
+    });
 
     const movieInput = useSelector((store: any) => {
-        //! Need to change ANY type later
         const { inputReducer } = store;
         return inputReducer.text;
     });
-    const dispatch = useDispatch();
 
-    const fetchMovies = (API: string): void => {
-        setLoading(true);
-        fetch(API)
-            .then((res) => {
-                return res.json();
-            })
-            .catch((e) => {
-                setLoading(false);
-                console.error("Error occured:", e);
-            })
-            .then((data) => {
-                console.log(data);
-                setMovies(data.results);
-                setLoading(false);
-            });
-    };
+    const loading = useSelector((store: any) => {
+        const { loadingReducer } = store;
+        return loadingReducer.loading;
+    });
 
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(searchMovie(e.target.value));
@@ -51,13 +44,13 @@ function App() {
         e.preventDefault();
 
         if (movieInput) {
-            fetchMovies(SEARCH_API + movieInput);
+            dispatch(fetchMovies(SEARCH_API + movieInput));
             dispatch(searchMovie(""));
         }
     };
 
     useEffect(() => {
-        fetchMovies(TRENDING_API);
+        dispatch(fetchMovies(TRENDING_API));
     }, []);
 
     return (
