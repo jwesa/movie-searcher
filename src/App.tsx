@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchMovies } from "./state/actions/actions";
+import { fetchMovies } from "./app/actions/actions";
 
-import { TRENDING_API } from "./api/config";
+import { TRENDING_API } from "./config/config";
 import SearchBar from "./components/SearchBar";
 import MovieContainer from "./components/MovieContainer";
 

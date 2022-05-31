@@ -4,7 +4,7 @@ import Movie from "./Movie";
 
 import { useSelector } from "react-redux";
 import { MovieRenderProps } from "../interfaces/propsInterfaces";
-import { State } from "../state/reducers/rootReducer";
+import { State } from "../app/reducers/rootReducer";
 
 const MovieContainer = () => {
     const movies = useSelector((state: State) => {

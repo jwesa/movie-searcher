@@ -1,6 +1,6 @@
-import { SEARCH_MOVIE } from "../types/types";
-import { inputActionInterface } from './../../interfaces/actionInterfaces';
-import { inputInterface } from "./../../interfaces/stateInterfaces";
+import { SEARCH_MOVIE } from "../actions/actionTypes";
+import { inputActionInterface } from '../../interfaces/actionInterfaces';
+import { inputInterface } from "../../interfaces/stateInterfaces";
 
 const initialState: inputInterface = {
     text: "",

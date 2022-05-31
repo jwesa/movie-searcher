@@ -1,6 +1,6 @@
-import { FETCH_MOVIES } from "../types/types";
-import { fetchActionInterface } from './../../interfaces/actionInterfaces';
-import { fetchStateInterface } from "./../../interfaces/stateInterfaces";
+import { FETCH_MOVIES } from "../actions/actionTypes";
+import { fetchActionInterface } from '../../interfaces/actionInterfaces';
+import { fetchStateInterface } from "../../interfaces/stateInterfaces";
 
 interface movieInterface {
     id: number;
