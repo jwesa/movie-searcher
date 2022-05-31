@@ -7,7 +7,7 @@ import {
     Overview,
 } from "../styles/stylesMovie";
 
-import { IMG_API } from "../api/config";
+import { IMG_API } from "../config/config";
 
 import { MovieProps } from "../interfaces/propsInterfaces";
 
@@ -18,7 +18,6 @@ const Movie = ({
     overview,
     poster_path,
 }: MovieProps) => {
-
     const setAvgVoteClass = (vote: number): string => {
         if (vote >= 7.5) {
             return "green";

@@ -1,6 +1,6 @@
-import { SET_LOADING_OFF, SET_LOADING_ON } from "../types/types";
-import { loadingStateInterface } from './../../interfaces/stateInterfaces';
-import { loadingActionInterface } from './../../interfaces/actionInterfaces';
+import { SET_LOADING_OFF, SET_LOADING_ON } from "../actions/actionTypes";
+import { loadingStateInterface } from '../../interfaces/stateInterfaces';
+import { loadingActionInterface } from '../../interfaces/actionInterfaces';
 
 const initialState: loadingStateInterface = {
     loading: true,

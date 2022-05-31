@@ -3,7 +3,7 @@ import {
 	SEARCH_MOVIE,
     SET_LOADING_ON,
     SET_LOADING_OFF,
-} from "../types/types";
+} from "./actionTypes";
 import { Dispatch } from "redux";
 
 export function fetchMovies(API: string) {
